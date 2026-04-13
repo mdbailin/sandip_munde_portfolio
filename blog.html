@@ -8,18 +8,17 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   </head>
   <body>
     <div class="page-shell">
       <header id="site-header"></header>
       <main class="page">
+        <!-- Dynamic header - content will be set by blog.js -->
         <section class="page-intro">
-          <p class="eyebrow">Blog</p>
-          <h1>Writing and notes</h1>
-          <p>
-            Essays, project reflections, and short-form research writing. Posts are stored as Markdown files in the
-            repository.
-          </p>
+          <p class="eyebrow" id="dynamic-eyebrow"></p>
+          <h1 id="dynamic-title"></h1>
+          <p id="dynamic-description"></p>
         </section>
         
         <section id="blog-list" class="post-list"></section>
