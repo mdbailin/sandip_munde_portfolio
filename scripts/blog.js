@@ -9,7 +9,7 @@ async function initBlogPage() {
   const params = new URLSearchParams(window.location.search);
   const filterTag = params.get("tag");
 
-  // Customize header based on tag
+  // Customize header based on tag (matching your index.html cards)
   const headerConfig = {
     'education': {
       eyebrow: 'Classroom Insights',
@@ -28,22 +28,25 @@ async function initBlogPage() {
     }
   };
 
-  const config = headerConfig[filterTag] || {
+  // Default header if no tag or unknown tag
+  const defaultConfig = {
     eyebrow: 'Blog',
     title: 'Writing and notes',
-    description: 'Essays, project reflections, and short-form research writing. Posts are stored as Markdown files in the repository.'
+    description: 'Essays, project reflections, and short-form research writing.'
   };
 
-  // Update the page header
-  const eyebrowEl = document.querySelector('.page-intro .eyebrow');
-  const titleEl = document.querySelector('.page-intro h1');
-  const descEl = document.querySelector('.page-intro p');
+  const config = headerConfig[filterTag] || defaultConfig;
+
+  // Update the page header dynamically
+  const eyebrowEl = document.getElementById('dynamic-eyebrow');
+  const titleEl = document.getElementById('dynamic-title');
+  const descEl = document.getElementById('dynamic-description');
   
   if (eyebrowEl) eyebrowEl.textContent = config.eyebrow;
   if (titleEl) titleEl.textContent = config.title;
   if (descEl) descEl.textContent = config.description;
   
-  // Update page title
+  // Update browser title
   document.title = `${config.title} | Dr. Aidin Jalilzadeh`;
 
   try {
@@ -58,7 +61,7 @@ async function initBlogPage() {
     }
     
     if (posts.length === 0) {
-      blogList.innerHTML = '<p style="text-align:center; padding:2rem; color: var(--muted);">No posts found.</p>';
+      blogList.innerHTML = '<p style="text-align:center; padding:2rem; color: var(--muted);">No posts found in this category yet. Check back soon!</p>';
     } else {
       blogList.innerHTML = posts.map(renderPostListItem).join("");
     }
