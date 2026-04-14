@@ -987,7 +987,7 @@ header.header {
 
 .category-btn:hover {
   transform: translateY(-2px);
-  background: linear-gradient(to right, #009dff, #ff00ff);
+  background: linear-gradient(to right, #ff00ff, #009dff);
   color: white;
   border-color: transparent;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
