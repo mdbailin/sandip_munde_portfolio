@@ -962,6 +962,49 @@ header.header {
   border-color: var(--accent);
   color: white;
 }
+/* Category Navigation Buttons - Outlined with Gradient Hover */
+.category-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem auto 3rem;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  padding: 0.6rem 1.5rem;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.category-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(to right, #009dff, #ff00ff);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.category-btn.active {
+  background: linear-gradient(to right, #009dff, #ff00ff);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 157, 255, 0.3);
+}
+
+.category-btn.active::after {
+  content: ' ✓';
+  font-size: 0.85rem;
+  font-weight: bold;
+}
 
 /* ============================================
    RESPONSIVE MEDIA QUERIES
