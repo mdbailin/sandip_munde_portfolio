@@ -5,10 +5,15 @@ summary: My take on the differences between the three major curricula.
 author: Dr. Aidin Jalilzadeh
 publishedAt: 2026-03-23T00:00:00.000Z
 tags:
-  - education
+  - communication
+  - 'Math Curricula '
+  - AP
+  - IGCSE
+  - A-Levels
+  - IBDP
 ---
 
-# Hi All
+#
 
 If you are trying to choose between A-level Math, AP Math, and IB Math, the confusing part is that all three can be academically strong, but they are built around very different ideas of what mathematics education should look like.
 
