@@ -31,6 +31,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Generate published blog index
+        run: npm run build:posts
+
       - name: Build Tina admin when credentials exist
         env:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
