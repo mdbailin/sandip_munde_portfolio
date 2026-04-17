@@ -3,6 +3,12 @@ import { formatDate } from "./site.js";
 
 let postIndexPromise;
 
+// Helper function to filter out category tags (cat-*)
+function getDisplayTags(tags) {
+  if (!Array.isArray(tags)) return [];
+  return tags.filter(tag => !tag.startsWith('cat-'));
+}
+
 function normalizePublishedPost(entry) {
   return {
     title: typeof entry?.title === "string" ? entry.title : "Untitled",
@@ -54,7 +60,8 @@ export async function loadPostBySlug(slug) {
 }
 
 export function renderPostCard(post) {
-  const tags = (post.tags || [])
+  const displayTags = getDisplayTags(post.tags);
+  const tags = displayTags
     .slice(0, 3)
     .map((tag) => `<span class="tag">${tag}</span>`)
     .join("");
@@ -71,7 +78,8 @@ export function renderPostCard(post) {
 }
 
 export function renderPostListItem(post) {
-  const tags = (post.tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("");
+  const displayTags = getDisplayTags(post.tags);
+  const tags = displayTags.map((tag) => `<span class="tag">${tag}</span>`).join("");
   return `
     <article class="post-list-item">
       <p class="meta-text">${formatDate(post.publishedAt)}</p>
@@ -84,7 +92,8 @@ export function renderPostListItem(post) {
 }
 
 export function renderFullPost(post) {
-  const tags = (post.tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("");
+  const displayTags = getDisplayTags(post.tags);
+  const tags = displayTags.map((tag) => `<span class="tag">${tag}</span>`).join("");
 
   return `
     <header class="post-header">
