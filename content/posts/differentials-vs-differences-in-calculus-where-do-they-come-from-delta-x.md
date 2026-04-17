@@ -6,7 +6,7 @@ author: Dr. Aidin Jalilzadeh
 publishedAt: 2026-04-16T00:00:00.000Z
 tags:
   - calculus
-  - 'education '
+  - education
 ---
 
 # Differentials vs Differences in Calculus - Where do they come from? ($$\delta x$$)
