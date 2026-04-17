@@ -90,6 +90,19 @@ export default defineConfig({
             label: "Tags",
             list: true,
           },
+          // 👇 ADD THIS CATEGORY FIELD 👇
+          {
+            type: "string",
+            name: "category",
+            label: "Category",
+            description: "Which section of the website this post belongs to",
+            options: [
+              { value: "education", label: "📚 Math in Classroom" },
+              { value: "research", label: "🔬 Math for All Seasons" },
+              { value: "communication", label: "💭 Opinion" }
+            ],
+            required: true,
+          },
           {
             type: "boolean",
             name: "draft",
