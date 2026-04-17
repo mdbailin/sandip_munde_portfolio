@@ -5,7 +5,7 @@ summary: My take on the differences between the three major curricula.
 author: Dr. Aidin Jalilzadeh
 publishedAt: 2026-03-23T00:00:00.000Z
 tags:
-  - communication
+  - cat-communication
   - 'Math Curricula '
   - AP
   - IGCSE
