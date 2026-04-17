@@ -90,7 +90,6 @@ export default defineConfig({
             label: "Tags",
             list: true,
           },
-         
           {
             type: "boolean",
             name: "draft",
@@ -105,5 +104,5 @@ export default defineConfig({
         ],
       },
     ],
-  }, 
+  },
 });
