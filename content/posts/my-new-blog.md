@@ -6,7 +6,7 @@ author: Dr. Aidin Jalilzadeh
 publishedAt: 2026-03-23T00:00:00.000Z
 tags:
   - cat-communication
-  - 'Math Curricula '
+  - Math Curriculum
   - AP
   - IGCSE
   - A-Levels
