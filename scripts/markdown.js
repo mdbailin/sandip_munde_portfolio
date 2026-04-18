@@ -20,6 +20,25 @@ function renderParagraph(text) {
   return `<p>${parseInline(text)}</p>`;
 }
 
+function isCodeFenceLine(line) {
+  return line.trimStart().startsWith("```");
+}
+
+function getHeadingMatch(line) {
+  return line.match(/^\s*(#{1,4})\s+(.*)$/);
+}
+
+function isBlockBoundary(line) {
+  return (
+    !line.trim() ||
+    Boolean(getHeadingMatch(line)) ||
+    line.trimStart().startsWith("> ") ||
+    /^\s*\d+\.\s+/.test(line) ||
+    /^\s*-\s+/.test(line) ||
+    isCodeFenceLine(line)
+  );
+}
+
 function renderList(items, ordered) {
   const tag = ordered ? "ol" : "ul";
   const rendered = items.map((item) => `<li>${parseInline(item)}</li>`).join("");
@@ -136,10 +155,10 @@ export function renderMarkdown(markdown) {
       continue;
     }
 
-    if (line.startsWith("```")) {
+    if (isCodeFenceLine(line)) {
       const buffer = [];
       index += 1;
-      while (index < lines.length && !lines[index].startsWith("```")) {
+      while (index < lines.length && !isCodeFenceLine(lines[index])) {
         buffer.push(lines[index]);
         index += 1;
       }
@@ -148,7 +167,7 @@ export function renderMarkdown(markdown) {
       continue;
     }
 
-    const headingMatch = line.match(/^(#{1,4})\s+(.*)$/);
+    const headingMatch = getHeadingMatch(line);
     if (headingMatch) {
       const level = headingMatch[1].length;
       blocks.push(`<h${level}>${parseInline(headingMatch[2])}</h${level}>`);
@@ -156,21 +175,21 @@ export function renderMarkdown(markdown) {
       continue;
     }
 
-    if (line.startsWith("> ")) {
+    if (line.trimStart().startsWith("> ")) {
       const quoteLines = [];
-      while (index < lines.length && lines[index].startsWith("> ")) {
-        quoteLines.push(lines[index].slice(2));
+      while (index < lines.length && lines[index].trimStart().startsWith("> ")) {
+        quoteLines.push(lines[index].trimStart().slice(2));
         index += 1;
       }
       blocks.push(`<blockquote>${quoteLines.map(parseInline).join("<br />")}</blockquote>`);
       continue;
     }
 
-    const orderedMatch = line.match(/^(\d+)\.\s+(.*)$/);
+    const orderedMatch = line.match(/^\s*(\d+)\.\s+(.*)$/);
     if (orderedMatch) {
       const items = [];
       while (index < lines.length) {
-        const itemMatch = lines[index].match(/^\d+\.\s+(.*)$/);
+        const itemMatch = lines[index].match(/^\s*\d+\.\s+(.*)$/);
         if (!itemMatch) {
           break;
         }
@@ -181,10 +200,10 @@ export function renderMarkdown(markdown) {
       continue;
     }
 
-    if (line.startsWith("- ")) {
+    if (/^\s*-\s+/.test(line)) {
       const items = [];
-      while (index < lines.length && lines[index].startsWith("- ")) {
-        items.push(lines[index].slice(2));
+      while (index < lines.length && /^\s*-\s+/.test(lines[index])) {
+        items.push(lines[index].replace(/^\s*-\s+/, ""));
         index += 1;
       }
       blocks.push(renderList(items, false));
@@ -193,6 +212,9 @@ export function renderMarkdown(markdown) {
 
     const paragraphLines = [];
     while (index < lines.length && lines[index].trim()) {
+      if (paragraphLines.length > 0 && isBlockBoundary(lines[index])) {
+        break;
+      }
       paragraphLines.push(lines[index].trim());
       index += 1;
     }
