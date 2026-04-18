@@ -58,6 +58,16 @@ async function initPostPage() {
     document.title = `${post.title} | Dr. Aidin Jalilzadeh`;
     container.innerHTML = renderFullPost(post);
     
+    // FIX: Replace double backslashes with single backslashes in LaTeX
+    const richCopy = container.querySelector('.rich-copy');
+    if (richCopy) {
+      let html = richCopy.innerHTML;
+      // Replace double backslash with single backslash for LaTeX commands
+      html = html.replace(/\\\\/g, '\\');
+      richCopy.innerHTML = html;
+      console.log("Fixed double backslashes in LaTeX");
+    }
+    
     // Small delay to ensure DOM is ready
     await wait(50);
     await renderMath(container);
