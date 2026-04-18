@@ -1,7 +1,7 @@
 import { loadPostBySlug, renderFullPost } from "./blog-data.js";
 import { initSite, setStatus } from "./site.js";
 
-const MAX_MATH_RENDER_WAIT_MS = 5000;
+const MAX_MATH_RENDER_WAIT_MS = 4000;
 
 function wait(ms) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
@@ -9,11 +9,8 @@ function wait(ms) {
 
 async function renderMath(container) {
   const deadline = Date.now() + MAX_MATH_RENDER_WAIT_MS;
-  
-  // Wait for KaTeX auto-render to be available
   while (typeof window.renderMathInElement !== "function" && Date.now() < deadline) {
-    console.log("Waiting for KaTeX...");
-    await wait(100);
+    await wait(50);
   }
 
   if (typeof window.renderMathInElement !== "function") {
@@ -21,23 +18,15 @@ async function renderMath(container) {
     return;
   }
 
-  console.log("KaTeX loaded, rendering math...");
-  
-  try {
-    window.renderMathInElement(container, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "$", right: "$", display: false },
-        { left: "\\(", right: "\\)", display: false },
-        { left: "\\[", right: "\\]", display: true },
-      ],
-      throwOnError: false,
-      errorColor: "#cc0000",
-    });
-    console.log("Math rendering complete");
-  } catch (error) {
-    console.error("Math rendering error:", error);
-  }
+  window.renderMathInElement(container, {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "$", right: "$", display: false },
+      { left: "\\(", right: "\\)", display: false },
+      { left: "\\[", right: "\\]", display: true },
+    ],
+    throwOnError: false,
+  });
 }
 
 async function initPostPage() {
@@ -57,23 +46,8 @@ async function initPostPage() {
     const post = await loadPostBySlug(slug);
     document.title = `${post.title} | Dr. Aidin Jalilzadeh`;
     container.innerHTML = renderFullPost(post);
-    
-    // FIX: Replace double backslashes with single backslashes in LaTeX
-    const richCopy = container.querySelector('.rich-copy');
-    if (richCopy) {
-      let html = richCopy.innerHTML;
-      // Replace double backslash with single backslash for LaTeX commands
-      html = html.replace(/\\\\/g, '\\');
-      richCopy.innerHTML = html;
-      console.log("Fixed double backslashes in LaTeX");
-    }
-    
-    // Small delay to ensure DOM is ready
-    await wait(50);
     await renderMath(container);
-    
   } catch (error) {
-    console.error("Error loading post:", error);
     setStatus(status, error.message, "error");
   }
 }
