@@ -11,7 +11,7 @@ function escapeHtml(value) {
 function protectLatex(content) {
   const placeholders = [];
   
-  // Protect inline math $...$
+  // Protect inline math $...$ 
   let protected = content.replace(/\$([^$]+?)\$/g, (match, p1) => {
     const placeholder = `__LATEX_INLINE_${placeholders.length}__`;
     placeholders.push({ placeholder, original: match });
