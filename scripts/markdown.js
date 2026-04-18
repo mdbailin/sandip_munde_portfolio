@@ -38,8 +38,9 @@ function restoreLatex(html, placeholders) {
 }
 
 function parseInline(text) {
-  const escaped = escapeHtml(text);
-  return escaped
+  // Don't escape math placeholders - they are already protected
+  // Just apply markdown formatting
+  return text
     .replace(/`([^`]+)`/g, "<code>$1</code>")
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
