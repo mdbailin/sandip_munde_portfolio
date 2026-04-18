@@ -80,9 +80,10 @@ async function initBlogPage() {
     let posts = await loadPostIndex();
     
     if (filterTag) {
+      // NEW FILTER: looks for tag with "cat-" prefix
       posts = posts.filter(post => 
         post.tags && post.tags.some(tag => 
-          tag.toLowerCase().trim() === filterTag.toLowerCase().trim()
+          tag === `cat-${filterTag}`
         )
       );
     }
