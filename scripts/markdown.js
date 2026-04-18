@@ -7,6 +7,36 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+// NEW: Protect LaTeX delimiters from being escaped
+function protectLatex(content) {
+  const placeholders = [];
+  
+  // Protect inline math $...$
+  let protected = content.replace(/\$([^$]+?)\$/g, (match, p1) => {
+    const placeholder = `__LATEX_INLINE_${placeholders.length}__`;
+    placeholders.push({ placeholder, original: match });
+    return placeholder;
+  });
+  
+  // Protect display math $$...$$
+  protected = protected.replace(/\$\$([^$]+?)\$\$/g, (match, p1) => {
+    const placeholder = `__LATEX_DISPLAY_${placeholders.length}__`;
+    placeholders.push({ placeholder, original: match });
+    return placeholder;
+  });
+  
+  return { protected, placeholders };
+}
+
+// NEW: Restore LaTeX after markdown processing
+function restoreLatex(html, placeholders) {
+  let restored = html;
+  for (const { placeholder, original } of placeholders) {
+    restored = restored.replace(placeholder, original);
+  }
+  return restored;
+}
+
 function parseInline(text) {
   const escaped = escapeHtml(text);
   return escaped
@@ -143,7 +173,10 @@ export function renderMarkdown(markdown) {
     return "<p>No content yet.</p>";
   }
 
-  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+  // Protect LaTeX from being processed/escaped
+  const { protected: protectedContent, placeholders } = protectLatex(markdown);
+
+  const lines = protectedContent.replace(/\r\n/g, "\n").split("\n");
   const blocks = [];
   let index = 0;
 
@@ -221,7 +254,8 @@ export function renderMarkdown(markdown) {
     blocks.push(renderParagraph(paragraphLines.join(" ")));
   }
 
-  return blocks.join("\n");
+  // Restore LaTeX after all markdown processing
+  return restoreLatex(blocks.join("\n"), placeholders);
 }
 
 export function slugify(value) {
