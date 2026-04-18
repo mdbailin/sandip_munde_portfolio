@@ -9,36 +9,31 @@ async function initBlogPage() {
   const params = new URLSearchParams(window.location.search);
   const filterTag = params.get("tag");
 
-  // Customize header based on tag (matching your index.html cards)
+  // Customize header based on tag
   const headerConfig = {
     'education': {
       eyebrow: 'Classroom Insights',
       title: 'Math in Classroom',
-      description: 'Strategies, insights, and best practices for teaching mathematics effectively at all levels.',
-      buttonText: '📚 Math in Classroom'
+      description: 'Strategies, insights, and best practices for teaching mathematics effectively at all levels.'
     },
     'research': {
       eyebrow: 'Exploring Mathematics',
       title: 'Math for All Seasons',
-      description: 'Making complex ideas accessible and engaging. Exploring the beauty of mathematics along with historical notes.',
-      buttonText: '🔬 Math for All Seasons'
+      description: 'Making complex ideas accessible and engaging. Exploring the beauty of mathematics along with historical notes.'
     },
     'communication': {
       eyebrow: 'Opinion & Commentary',
       title: 'Opinion',
-      description: 'In other words, blogging, blogging and blogging!!',
-      buttonText: '💭 Opinion'
+      description: 'In other words, blogging, blogging and blogging!!'
     }
   };
 
-  // Category navigation buttons (all three categories)
   const categories = [
     { tag: 'education', label: '📚 Math in Classroom' },
     { tag: 'research', label: '🔬 Math for All Seasons' },
     { tag: 'communication', label: '💭 Opinion' }
   ];
 
-  // Generate navigation HTML
   const navHtml = `
     <div class="category-nav">
       ${categories.map(cat => `
@@ -49,7 +44,6 @@ async function initBlogPage() {
     </div>
   `;
 
-  // Default header if no tag or unknown tag
   const defaultConfig = {
     eyebrow: 'Blog',
     title: 'Writing and notes',
@@ -58,7 +52,6 @@ async function initBlogPage() {
 
   const config = headerConfig[filterTag] || defaultConfig;
 
-  // Update the page header dynamically
   const eyebrowEl = document.getElementById('dynamic-eyebrow');
   const titleEl = document.getElementById('dynamic-title');
   const descEl = document.getElementById('dynamic-description');
@@ -67,10 +60,8 @@ async function initBlogPage() {
   if (titleEl) titleEl.textContent = config.title;
   if (descEl) descEl.textContent = config.description;
   
-  // Update browser title
   document.title = `${config.title} | Dr. Aidin Jalilzadeh`;
 
-  // Insert navigation buttons after the page-intro
   const pageIntro = document.querySelector('.page-intro');
   if (pageIntro && !document.querySelector('.category-nav')) {
     pageIntro.insertAdjacentHTML('afterend', navHtml);
@@ -80,7 +71,6 @@ async function initBlogPage() {
     let posts = await loadPostIndex();
     
     if (filterTag) {
-      // NEW FILTER: looks for tag with "cat-" prefix
       posts = posts.filter(post => 
         post.tags && post.tags.some(tag => 
           tag === `cat-${filterTag}`
