@@ -7,6 +7,9 @@ publishedAt: 2026-04-16T00:00:00.000Z
 tags:
   - calculus
   - cat-education
+  - differential calculus
+  - infinitesimals
+  - $dx$ vs $\delta x$
 ---
 
-# Differentials vs Differences in Calculus - Where do they come from? ($\delta x$)
+# Differentials in Calculus - $dx$ vs $\delta x$
