@@ -7,40 +7,9 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-// NEW: Protect LaTeX delimiters from being escaped
-function protectLatex(content) {
-  const placeholders = [];
-  
-  // Protect inline math $...$ 
-  let protected = content.replace(/\$([^$]+?)\$/g, (match, p1) => {
-    const placeholder = `__LATEX_INLINE_${placeholders.length}__`;
-    placeholders.push({ placeholder, original: match });
-    return placeholder;
-  });
-  
-  // Protect display math $$...$$
-  protected = protected.replace(/\$\$([^$]+?)\$\$/g, (match, p1) => {
-    const placeholder = `__LATEX_DISPLAY_${placeholders.length}__`;
-    placeholders.push({ placeholder, original: match });
-    return placeholder;
-  });
-  
-  return { protected, placeholders };
-}
-
-// NEW: Restore LaTeX after markdown processing
-function restoreLatex(html, placeholders) {
-  let restored = html;
-  for (const { placeholder, original } of placeholders) {
-    restored = restored.replace(placeholder, original);
-  }
-  return restored;
-}
-
 function parseInline(text) {
-  // Don't escape math placeholders - they are already protected
-  // Just apply markdown formatting
-  return text
+  const escaped = escapeHtml(text);
+  return escaped
     .replace(/`([^`]+)`/g, "<code>$1</code>")
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
@@ -49,25 +18,6 @@ function parseInline(text) {
 
 function renderParagraph(text) {
   return `<p>${parseInline(text)}</p>`;
-}
-
-function isCodeFenceLine(line) {
-  return line.trimStart().startsWith("```");
-}
-
-function getHeadingMatch(line) {
-  return line.match(/^\s*(#{1,4})\s+(.*)$/);
-}
-
-function isBlockBoundary(line) {
-  return (
-    !line.trim() ||
-    Boolean(getHeadingMatch(line)) ||
-    line.trimStart().startsWith("> ") ||
-    /^\s*\d+\.\s+/.test(line) ||
-    /^\s*-\s+/.test(line) ||
-    isCodeFenceLine(line)
-  );
 }
 
 function renderList(items, ordered) {
@@ -174,10 +124,7 @@ export function renderMarkdown(markdown) {
     return "<p>No content yet.</p>";
   }
 
-  // Protect LaTeX from being processed/escaped
-  const { protected: protectedContent, placeholders } = protectLatex(markdown);
-
-  const lines = protectedContent.replace(/\r\n/g, "\n").split("\n");
+  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
   const blocks = [];
   let index = 0;
 
@@ -189,10 +136,10 @@ export function renderMarkdown(markdown) {
       continue;
     }
 
-    if (isCodeFenceLine(line)) {
+    if (line.startsWith("```")) {
       const buffer = [];
       index += 1;
-      while (index < lines.length && !isCodeFenceLine(lines[index])) {
+      while (index < lines.length && !lines[index].startsWith("```")) {
         buffer.push(lines[index]);
         index += 1;
       }
@@ -201,7 +148,7 @@ export function renderMarkdown(markdown) {
       continue;
     }
 
-    const headingMatch = getHeadingMatch(line);
+    const headingMatch = line.match(/^(#{1,4})\s+(.*)$/);
     if (headingMatch) {
       const level = headingMatch[1].length;
       blocks.push(`<h${level}>${parseInline(headingMatch[2])}</h${level}>`);
@@ -209,21 +156,21 @@ export function renderMarkdown(markdown) {
       continue;
     }
 
-    if (line.trimStart().startsWith("> ")) {
+    if (line.startsWith("> ")) {
       const quoteLines = [];
-      while (index < lines.length && lines[index].trimStart().startsWith("> ")) {
-        quoteLines.push(lines[index].trimStart().slice(2));
+      while (index < lines.length && lines[index].startsWith("> ")) {
+        quoteLines.push(lines[index].slice(2));
         index += 1;
       }
       blocks.push(`<blockquote>${quoteLines.map(parseInline).join("<br />")}</blockquote>`);
       continue;
     }
 
-    const orderedMatch = line.match(/^\s*(\d+)\.\s+(.*)$/);
+    const orderedMatch = line.match(/^(\d+)\.\s+(.*)$/);
     if (orderedMatch) {
       const items = [];
       while (index < lines.length) {
-        const itemMatch = lines[index].match(/^\s*\d+\.\s+(.*)$/);
+        const itemMatch = lines[index].match(/^\d+\.\s+(.*)$/);
         if (!itemMatch) {
           break;
         }
@@ -234,10 +181,10 @@ export function renderMarkdown(markdown) {
       continue;
     }
 
-    if (/^\s*-\s+/.test(line)) {
+    if (line.startsWith("- ")) {
       const items = [];
-      while (index < lines.length && /^\s*-\s+/.test(lines[index])) {
-        items.push(lines[index].replace(/^\s*-\s+/, ""));
+      while (index < lines.length && lines[index].startsWith("- ")) {
+        items.push(lines[index].slice(2));
         index += 1;
       }
       blocks.push(renderList(items, false));
@@ -246,17 +193,13 @@ export function renderMarkdown(markdown) {
 
     const paragraphLines = [];
     while (index < lines.length && lines[index].trim()) {
-      if (paragraphLines.length > 0 && isBlockBoundary(lines[index])) {
-        break;
-      }
       paragraphLines.push(lines[index].trim());
       index += 1;
     }
     blocks.push(renderParagraph(paragraphLines.join(" ")));
   }
 
-  // Restore LaTeX after all markdown processing
-  return restoreLatex(blocks.join("\n"), placeholders);
+  return blocks.join("\n");
 }
 
 export function slugify(value) {
