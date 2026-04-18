@@ -9,4 +9,4 @@ tags:
   - cat-education
 ---
 
-# Differentials vs Differences in Calculus - Where do they come from? ($$\delta x$$)
+# Differentials vs Differences in Calculus - Where do they come from? ($\delta x$)
