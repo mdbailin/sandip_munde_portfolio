@@ -7,6 +7,70 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function extractMathSegments(text) {
+  const segments = [];
+  let output = "";
+  let index = 0;
+
+  while (index < text.length) {
+    if (text[index] !== "$") {
+      output += text[index];
+      index += 1;
+      continue;
+    }
+
+    const delimiter = text[index + 1] === "$" ? "$$" : "$";
+    const nextCharacter = text[index + delimiter.length];
+    if (delimiter === "$" && (!nextCharacter || /\s/.test(nextCharacter))) {
+      output += text[index];
+      index += 1;
+      continue;
+    }
+
+    const start = index;
+    let cursor = index + delimiter.length;
+    let end = -1;
+
+    while (cursor < text.length) {
+      if (text[cursor] === "\\") {
+        cursor += 2;
+        continue;
+      }
+
+      if (delimiter === "$$") {
+        if (text[cursor] === "$" && text[cursor + 1] === "$") {
+          end = cursor + 2;
+          break;
+        }
+      } else if (text[cursor] === "\n") {
+        break;
+      } else if (text[cursor] === "$" && !/\s/.test(text[cursor - 1] || "")) {
+        end = cursor + 1;
+        break;
+      }
+
+      cursor += 1;
+    }
+
+    if (end === -1) {
+      output += text[index];
+      index += 1;
+      continue;
+    }
+
+    const placeholder = `@@MATH${segments.length}@@`;
+    segments.push(text.slice(start, end));
+    output += placeholder;
+    index = end;
+  }
+
+  return { text: output, segments };
+}
+
+function restoreMathSegments(text, segments) {
+  return text.replace(/@@MATH(\d+)@@/g, (match, index) => segments[Number(index)] || match);
+}
+
 function parseInline(text) {
   const escaped = escapeHtml(text);
   return escaped
@@ -143,7 +207,10 @@ export function renderMarkdown(markdown) {
     return "<p>No content yet.</p>";
   }
 
-  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+  const { text: markdownWithPlaceholders, segments: mathSegments } = extractMathSegments(
+    markdown.replace(/\r\n/g, "\n"),
+  );
+  const lines = markdownWithPlaceholders.split("\n");
   const blocks = [];
   let index = 0;
 
@@ -221,7 +288,7 @@ export function renderMarkdown(markdown) {
     blocks.push(renderParagraph(paragraphLines.join(" ")));
   }
 
-  return blocks.join("\n");
+  return restoreMathSegments(blocks.join("\n"), mathSegments);
 }
 
 export function slugify(value) {
