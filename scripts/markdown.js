@@ -59,12 +59,16 @@ function extractMathSegments(text) {
     }
 
     const placeholder = `@@MATH${segments.length}@@`;
-    segments.push(text.slice(start, end));
+    segments.push(normalizeMathSegment(text.slice(start, end)));
     output += placeholder;
     index = end;
   }
 
   return { text: output, segments };
+}
+
+function normalizeMathSegment(segment) {
+  return segment.replace(/\\_(?=[A-Za-z0-9{])/g, "_");
 }
 
 function restoreMathSegments(text, segments) {
