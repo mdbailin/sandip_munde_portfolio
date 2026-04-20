@@ -13,8 +13,6 @@ tags:
   - IBDP
 ---
 
-#
-
 If you are trying to choose between A-level Math, AP Math, and IB Math, the confusing part is that all three can be academically strong, but they are built around very different ideas of what mathematics education should look like.
 
 At first glance, they may seem similar. Students study algebra, functions, calculus, statistics, and problem solving in all three systems. But the experience of learning them can feel very different. One course may push for deep procedural fluency, another may emphasize college-style unit exams, and another may connect mathematics to modeling, interpretation, and written communication.
@@ -75,11 +73,7 @@ That distinction matters.
 
 A student in a more analysis-focused route may spend more time with formal functions, calculus, and abstract reasoning. A student in a more applications-focused route may spend more time interpreting graphs, building models, and using mathematics to describe practical situations.
 
-For example, IB-style mathematics is often comfortable asking students not only to solve an equation, but also to explain what the result means in context. A student might model population growth with an exponential function such as
-
-$$P(t) = P\_0 e^{kt}$$
-
-and then discuss what the parameter ${k}$ represents, whether the model is realistic over a long period, and what assumptions are built into it.
+For example, IB-style mathematics is often comfortable asking students not only to solve an equation, but also to explain what the result means in context. A student might model population growth with an exponential function such as $P(t)=P\_0 e^{kt}$, and then discuss what the parameter ${k}$ represents, whether the model is realistic over a long period, and what assumptions are built into it.
 
 That is very IB. The mathematics is not separated from interpretation.
 
