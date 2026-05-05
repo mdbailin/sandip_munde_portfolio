@@ -118,7 +118,7 @@ function normalizePost(markdown, fileName) {
     title: data.title || fileName.replace(/\.md$/i, ""),
     slug: data.slug ? slugify(data.slug) : fallbackSlug,
     summary: data.summary || "",
-    author: data.author || "Dr. Aidin Jalilzadeh",
+    author: data.author || "Melissa Christensen",
     publishedAt: data.publishedAt || new Date(0).toISOString(),
     tags,
     draft: Boolean(data.draft),

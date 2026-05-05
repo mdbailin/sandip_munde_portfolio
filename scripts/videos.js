@@ -43,7 +43,7 @@ async function initVideosPage() {
   if (!SITE_CONFIG.youtube.channelId) {
     setStatus(
       status,
-      "Add Aidin's YouTube channel ID in scripts/config.js to load the latest ten uploads.",
+      "Add Melissa's YouTube channel ID in scripts/config.js to load the latest ten uploads.",
     );
     return;
   }

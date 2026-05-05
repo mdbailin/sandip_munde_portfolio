@@ -7,44 +7,44 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Generate published blog index
+      - name: Build blog index
         run: npm run build:posts
 
-      - name: Build Tina admin when credentials exist
+      - name: Build TinaCMS admin
+        run: |
+          if [ -n "$TINA_PUBLIC_CLIENT_ID" ] && [ -n "$TINA_TOKEN" ]; then
+            npm run build:admin
+          else
+            echo "Skipping TinaCMS admin build because TinaCloud secrets are not configured."
+          fi
         env:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           TINA_BRANCH: main
-        run: |
-          if [ -n "$TINA_PUBLIC_CLIENT_ID" ] && [ -n "$TINA_TOKEN" ]; then
-            npx tinacms build
-          else
-            echo "Skipping Tina admin build because TINA_PUBLIC_CLIENT_ID or TINA_TOKEN is not configured."
-          fi
 
       - name: Prepare Pages artifact
         run: |

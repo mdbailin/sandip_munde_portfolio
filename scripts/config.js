@@ -1,25 +1,25 @@
 const SITE_CONFIG = {
   site: {
-    title: "Unlocking the language of patterns | Dr. Aidin Jalilzadeh",
+    title: "Academic Portfolio | Melissa Christensen",
     headerTitle: "",
     subtitle: "",
-    description: "Making complex math simple, clear, and exciting. Math education insights, teaching strategies, and clear thinking from a PhD mathematician.",
+    description: "Academic portfolio, articles, videos, and blog writing by Melissa Christensen.",
   },
   profile: {
-    name: "Dr. Aidin Jalilzadeh",
-    role: "Unlocking the language of patterns",
+    name: "Melissa Christensen",
+    role: "Academic Portfolio",
     summary:
-      "Making complex math simple, clear, and exciting for curious minds. A space for students, teachers, and lifelong learners to explore mathematics with insight and joy.",
+      "A space for academic work, writing, teaching resources, and reflections for students, colleagues, and lifelong learners.",
   },
   github: {
-    owner: "aidinjalilzadeh-coder",
-    repo: "aj_portfolio",
+    owner: "mdbailin",
+    repo: "mc_portfolio",
     branch: "main",
     contentDir: "content/posts",
   },
   youtube: {
-    channelId: "UCoVNM6ISgZjFZG4nCDSuhKw",
-    channelUrl: "http://www.youtube.com/@AJTeachesMath",
+    channelId: "",
+    channelUrl: "",
   },
 };
 

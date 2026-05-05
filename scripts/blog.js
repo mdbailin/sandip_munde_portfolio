@@ -60,7 +60,7 @@ async function initBlogPage() {
   if (titleEl) titleEl.textContent = config.title;
   if (descEl) descEl.textContent = config.description;
   
-  document.title = `${config.title} | Dr. Aidin Jalilzadeh`;
+  document.title = `${config.title} | Melissa Christensen`;
 
   const pageIntro = document.querySelector('.page-intro');
   if (pageIntro && !document.querySelector('.category-nav')) {

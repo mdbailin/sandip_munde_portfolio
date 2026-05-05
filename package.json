@@ -1,13 +1,14 @@
 {
-  "name": "aj_portfolio",
+  "name": "mc_portfolio",
   "private": true,
   "version": "1.0.0",
-  "description": "Dr. Aidin Jalilzadeh portfolio site with TinaCMS-backed blog authoring.",
+  "description": "Melissa Christensen portfolio site with TinaCMS-backed blog authoring.",
   "scripts": {
     "build:posts": "node scripts/generate-posts-json.mjs",
     "tinacms": "tinacms",
     "dev": "npm run build:posts && tinacms dev -c \"python3 -m http.server 8000\"",
-    "build:tina": "npm run build:posts && tinacms build"
+    "build:admin": "tinacms build",
+    "build:tina": "npm run build:posts && npm run build:admin"
   },
   "dependencies": {
     "@tinacms/cli": "^1.12.6",

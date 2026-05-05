@@ -114,13 +114,13 @@ export function initSite(activePage) {
         <li><a href="index.html">About</a></li>
         <li><a href="index.html#experience">Experience</a></li>
         <li><a href="index.html#articles">Articles</a></li>
-        <li><a href="index.html">Videos</a></li>
+        <li><a href="videos.html">Videos</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       `;
     }
     
     header.innerHTML = `
-      <a class="logo" href="index.html">Aidin Jalilzadeh</a>
+      <a class="logo" href="index.html">Melissa Christensen</a>
       <ul class="nav-links">
         ${navLinksHtml}
       </ul>
@@ -140,7 +140,7 @@ export function initSite(activePage) {
   if (footer) {
     footer.className = "site-footer";
     footer.innerHTML = `
-      <p>Aidin Jalilzadeh</p>
+      <p>Melissa Christensen</p>
       <p><a class="footer-link" href="resume.pdf" download>Resume PDF</a></p>
     `;
   }

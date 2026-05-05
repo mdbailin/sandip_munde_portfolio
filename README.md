@@ -1,11 +1,11 @@
-# Dr. Aidin Jalilzadeh Portfolio
+# Melissa Christensen Portfolio
 
 Static academic portfolio designed for GitHub Pages with TinaCMS-backed blog authoring.
 
 ## Included pages
 
-- `index.html`: home page with headshot and resume download.
-- `videos.html`: latest 10 uploads from a configured YouTube channel.
+- `index.html`: home page with Melissa's profile photo and resume download.
+- `videos.html`: latest uploads from a configured YouTube channel.
 - `blog.html`: public blog index.
 - `post.html`: individual post reader.
 - `admin/`: TinaCMS admin app generated during deployment when Tina secrets are configured.
@@ -13,18 +13,16 @@ Static academic portfolio designed for GitHub Pages with TinaCMS-backed blog aut
 
 ## GitHub Pages deployment
 
-1. Create or use the target repo under the `aidinjalilzadeh-coder` account.
-2. Push these files to the repository.
-3. In GitHub, open `Settings > Pages`.
-4. Set the source to `Deploy from a branch`.
-5. Choose the branch, typically `main`, and `/ (root)`.
+The included `.github/workflows/deploy-pages.yml` workflow builds the published blog index, builds the TinaCMS admin app, and deploys the site to GitHub Pages.
+
+In GitHub, open `Settings > Pages` and set the source to `GitHub Actions`.
 
 If the repo name changes, update `scripts/config.js`:
 
 ```js
 github: {
-  owner: "aidinjalilzadeh-coder",
-  repo: "aj_portfolio",
+  owner: "mdbailin",
+  repo: "mc_portfolio",
   branch: "main",
   contentDir: "content/posts",
 }
@@ -32,7 +30,7 @@ github: {
 
 ## YouTube feed setup
 
-Add Aidin's YouTube channel details in `scripts/config.js`:
+Add Melissa's YouTube channel details in `scripts/config.js`:
 
 ```js
 youtube: {
@@ -41,11 +39,11 @@ youtube: {
 }
 ```
 
-The videos page uses the public channel RSS feed and renders the latest 10 uploads.
+The videos page uses the public channel RSS feed and renders the latest uploads. If no channel is configured, it shows a setup message.
 
 ## Blog authoring with TinaCMS
 
-The public site does not expose a custom in-browser editor. Blog authoring is intended to happen through TinaCMS, which provides a proper authenticated editing flow and writes Markdown content back to the GitHub repository.
+Blog authoring happens through TinaCMS, which provides an authenticated editing flow and writes Markdown content back to the GitHub repository.
 
 Relevant repo files:
 
@@ -54,18 +52,16 @@ Relevant repo files:
 - `content/posts.json`
 - `.github/workflows/deploy-pages.yml`
 
-The public blog pages do not query the live GitHub API. Instead, the site reads `content/posts.json`, a generated file built from the Markdown posts during local development and GitHub Pages deployment.
+The public blog pages read `content/posts.json`, a generated file built from Markdown posts during local development and GitHub Pages deployment.
 
-Recommended Tina setup:
+Recommended TinaCloud setup:
 
-1. Create a TinaCloud project connected to `aidinjalilzadeh-coder/aj_portfolio`.
-2. Copy the TinaCloud `clientId` and `token`.
+1. Create a TinaCloud project connected to `mdbailin/mc_portfolio`.
+2. Copy the TinaCloud `clientId` and read/write token.
 3. Add GitHub repository secrets:
    - `TINA_PUBLIC_CLIENT_ID`
    - `TINA_TOKEN`
-4. In GitHub Pages, switch the source from `Deploy from a branch` to `GitHub Actions`.
-5. Push to `main` or rerun the `Deploy GitHub Pages` workflow.
-6. Open `/admin/` on the deployed site and sign in through Tina.
+4. Open `/admin/` on the deployed site and sign in through Tina.
 
 Each blog post is a Markdown file with front matter in `content/posts/`, for example:
 
@@ -73,7 +69,7 @@ Each blog post is a Markdown file with front matter in `content/posts/`, for exa
 ---
 title: Example Title
 summary: A short summary for blog listing pages.
-author: Dr. Aidin Jalilzadeh
+author: Melissa Christensen
 publishedAt: 2026-03-23T00:00:00.000Z
 tags:
   - research
@@ -84,8 +80,6 @@ tags:
 
 Post body here.
 ```
-
-The public site reads those Markdown files directly from the GitHub repository and renders them on the blog pages.
 
 ## Local Tina development
 
@@ -107,7 +101,7 @@ Regenerate the published blog index without starting the dev server:
 npm run build:posts
 ```
 
-If TinaCloud credentials are not configured locally, the public site still works, but the Tina admin build and authenticated editing flow will not.
+If TinaCloud credentials are not configured locally, the public site still works, but authenticated Tina editing requires the TinaCloud project and repository secrets above.
 
 ## Local preview
 
