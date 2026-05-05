@@ -1,15 +1,15 @@
 const SITE_CONFIG = {
   site: {
-    title: "Academic Portfolio | Melissa Christensen",
+    title: "Melissa Christensen | Writing and Teaching",
     headerTitle: "",
     subtitle: "",
-    description: "Academic portfolio, articles, videos, and blog writing by Melissa Christensen.",
+    description: "Writing, teaching resources, articles, and reflections by Melissa Christensen.",
   },
   profile: {
     name: "Melissa Christensen",
-    role: "Academic Portfolio",
+    role: "Writing, Teaching, and Reflections",
     summary:
-      "A space for academic work, writing, teaching resources, and reflections for students, colleagues, and lifelong learners.",
+      "Welcome to a space for writing, teaching resources, and reflections for students, colleagues, and lifelong learners.",
   },
   github: {
     owner: "mdbailin",
