@@ -24,7 +24,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -75,7 +74,6 @@ header.header {
   justify-content: center;
   gap: 4rem;
   background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
   color: white;
   padding: 0.5rem 1.5rem;
   border-radius: 3rem;
@@ -87,11 +85,11 @@ header.header {
   font-size: 1.3rem;
   font-weight: 600;
   text-wrap: nowrap;
-  transition: transform 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .logo:hover {
-  transform: scale(1.075);
+  color: #eaf6ff;
 }
 
 .nav-links {
@@ -105,25 +103,24 @@ header.header {
   color: white;
   font-weight: 500;
   text-decoration: none;
-  padding-bottom: 0.25rem;
-  transition: color 0.3s ease;
+  padding-bottom: 0.35rem;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .nav-links li a::before {
-  position: absolute;
-  content: '';
-  width: 0;
-  left: 0;
-  top: 25px;
-  height: 5px;
-  border-radius: 1rem;
-  transition: 0.3s ease-in-out;
-  background: linear-gradient(to right, #009dff, #ff00ff);
+  display: none;
+  content: none;
 }
 
 .nav-links li a:hover::before,
 .nav-links li a.is-active::before {
-  width: 100%;
+  width: 0;
+}
+
+.nav-links li a:hover,
+.nav-links li a.is-active {
+  border-color: #8bd3ff;
 }
 
 .nav-links li a.is-active {
@@ -139,13 +136,13 @@ header.header {
   color: white;
   cursor: pointer;
   text-wrap: nowrap;
-  transition: 0.3s ease-in-out;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
   background: linear-gradient(to right, #009dff, #ff00ff);
 }
 
 .visit-btn:hover {
   background: linear-gradient(to right, #ff00ff, #009dff);
-  transform: scale(1.03);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
 }
 
 #menu-icon {
@@ -153,11 +150,11 @@ header.header {
   font-size: 1.5rem;
   cursor: pointer;
   color: white;
-  transition: transform 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 #menu-icon:hover {
-  transform: scale(1.1);
+  color: #eaf6ff;
 }
 
 /* ============================================
@@ -170,7 +167,6 @@ header.header {
   position: relative;
   display: flex;
   align-items: center;
-  scroll-snap-align: start;
   padding: calc(var(--navbar-height) + 1rem) 12% 4rem;
 }
 
@@ -270,7 +266,7 @@ header.header {
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   display: inline-block;
 }
@@ -284,7 +280,7 @@ header.header {
 .btn-primary:hover {
   background: var(--accent);
   color: white;
-  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 .btn-secondary {
@@ -296,7 +292,7 @@ header.header {
 .btn-secondary:hover {
   background: var(--accent);
   color: white;
-  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 .social-links {
@@ -307,12 +303,11 @@ header.header {
 .social-links a {
   color: #2a2a2a;
   font-size: 2.15rem;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .social-links a:hover {
   color: #000000;
-  transform: translateY(-3px) scale(1.25);
 }
 
 .about-photo {
@@ -377,15 +372,14 @@ header.header {
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   background: var(--surface);
-  backdrop-filter: blur(10px);
   box-shadow: var(--shadow);
   padding: 1.5rem;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-3px);
   border-color: var(--line-strong);
+  box-shadow: var(--shadow);
 }
 
 .card-eyebrow {
@@ -463,18 +457,17 @@ header.header {
 
 .article-card {
   background: var(--surface);
-  backdrop-filter: blur(10px);
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
   padding: 2rem 1.5rem;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .article-card:hover {
-  transform: translateY(-8px);
   box-shadow: var(--shadow);
   border-color: var(--line-strong);
+  background: var(--surface-strong);
 }
 
 .article-icon {
@@ -484,11 +477,6 @@ header.header {
 .article-icon i {
   font-size: 3rem;
   color: var(--accent);
-  transition: transform 0.3s ease;
-}
-
-.article-card:hover .article-icon i {
-  transform: scale(1.1);
 }
 
 .article-card h3 {
@@ -511,23 +499,18 @@ header.header {
   font-weight: 600;
   text-decoration: none;
   font-size: 0.9rem;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
   position: relative;
 }
 
 .article-link::after {
   content: '→';
   margin-left: 0.3rem;
-  transition: transform 0.2s ease;
   display: inline-block;
 }
 
 .article-link:hover {
   color: var(--text);
-}
-
-.article-link:hover::after {
-  transform: translateX(4px);
 }
 
 /* Responsive adjustments for articles */
@@ -563,7 +546,6 @@ header.header {
 
 .contact-container {
   background: var(--surface);
-  backdrop-filter: blur(10px);
   border-radius: var(--radius-lg);
   padding: 3rem 2rem;
   border: 1px solid var(--line);
@@ -609,12 +591,11 @@ header.header {
   border-radius: var(--radius-md);
   background: var(--surface-strong);
   border: 1px solid var(--line);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
   text-align: center;
 }
 
 .contact-card:hover {
-  transform: translateY(-5px);
   box-shadow: var(--shadow);
   border-color: var(--line-strong);
 }
@@ -679,15 +660,13 @@ header.header {
 /* Individual post card */
 .post-list-item {
   background: var(--surface);
-  backdrop-filter: blur(10px);
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
   padding: 2rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .post-list-item:hover {
-  transform: translateY(-4px);
   box-shadow: var(--shadow);
   border-color: var(--line-strong);
 }
@@ -754,13 +733,12 @@ header.header {
   font-weight: 600;
   text-decoration: none;
   font-size: 0.9rem;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .post-link::after {
   content: '→';
   margin-left: 0.3rem;
-  transition: transform 0.2s ease;
   display: inline-block;
 }
 
@@ -768,14 +746,9 @@ header.header {
   color: var(--text);
 }
 
-.post-link:hover::after {
-  transform: translateX(4px);
-}
-
 /* Status card (loading/error) */
 .status-card {
   background: var(--surface);
-  backdrop-filter: blur(10px);
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
   padding: 2rem;
@@ -945,14 +918,13 @@ header.header {
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   background: var(--surface);
   border: 1px solid var(--line);
   color: var(--text);
 }
 
 .category-btn:hover {
-  transform: translateY(-2px);
   border-color: var(--accent);
   background: var(--accent-soft);
 }
@@ -977,7 +949,7 @@ header.header {
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   background: transparent;
   color: var(--text);
   border: 1px solid var(--line);
@@ -986,7 +958,6 @@ header.header {
 }
 
 .category-btn:hover {
-  transform: translateY(-2px);
   background: linear-gradient(to right, #009dff,#ff00ff);
   color: white;
   border-color: transparent;
@@ -1084,7 +1055,6 @@ header.header {
     right: 0;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(12px);
     border-radius: 1.5rem;
     padding: 1rem;
     margin-top: 0.75rem;
