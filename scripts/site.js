@@ -100,27 +100,29 @@ export function initSite(activePage) {
     let navLinksHtml = "";
     
     if (activePage === "index.html") {
-      // On homepage: About, Experience, and Contact scroll to sections
+      // On homepage: primary navigation scrolls to sections.
       navLinksHtml = `
         <li><a href="#about" data-scroll="about">About</a></li>
-        <li><a href="#experience" data-scroll="experience">Experience</a></li>
+        <li><a href="#experience" data-scroll="experience">Focus</a></li>
+        <li><a href="#career" data-scroll="career">Career</a></li>
+        <li><a href="#education" data-scroll="education">Education</a></li>
         <li><a href="#articles" data-scroll="articles">Articles</a></li>
-        <li><a href="videos.html">Videos</a></li>
         <li><a href="#contact" data-scroll="contact">Contact</a></li>
       `;
     } else {
       // On other pages: all links go to pages
       navLinksHtml = `
         <li><a href="index.html">About</a></li>
-        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#experience">Focus</a></li>
+        <li><a href="index.html#career">Career</a></li>
+        <li><a href="index.html#education">Education</a></li>
         <li><a href="index.html#articles">Articles</a></li>
-        <li><a href="videos.html">Videos</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       `;
     }
     
     header.innerHTML = `
-      <a class="logo" href="index.html">Melissa Christensen</a>
+      <a class="logo" href="index.html">Sandip Munde</a>
       <ul class="nav-links">
         ${navLinksHtml}
       </ul>
@@ -140,7 +142,7 @@ export function initSite(activePage) {
   if (footer) {
     footer.className = "site-footer";
     footer.innerHTML = `
-      <p>Melissa Christensen</p>
+      <p>Sandip Munde</p>
       <p><a class="footer-link" href="resume.pdf" download>Resume PDF</a></p>
     `;
   }

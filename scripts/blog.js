@@ -14,24 +14,24 @@ async function initBlogPage() {
     'education': {
       eyebrow: 'Classroom Insights',
       title: 'Math in Classroom',
-      description: 'Strategies, insights, and best practices for teaching mathematics effectively at all levels.'
+      description: 'Strategies and reflections on mathematics learning in IB, CIE, and international classrooms.'
     },
     'research': {
       eyebrow: 'Exploring Mathematics',
       title: 'Math for All Seasons',
-      description: 'Making complex ideas accessible and engaging. Exploring the beauty of mathematics along with historical notes.'
+      description: 'Mathematical ideas, models, history, and classroom connections for curious learners.'
     },
     'communication': {
       eyebrow: 'Opinion & Commentary',
       title: 'Opinion',
-      description: 'In other words, blogging, blogging and blogging!!'
+      description: 'Reflections on curriculum, student growth, international education, and leadership.'
     }
   };
 
   const categories = [
-    { tag: 'education', label: '📚 Math in Classroom' },
-    { tag: 'research', label: '🔬 Math for All Seasons' },
-    { tag: 'communication', label: '💭 Opinion' }
+    { tag: 'education', label: 'Math in Classroom' },
+    { tag: 'research', label: 'Math for All Seasons' },
+    { tag: 'communication', label: 'Opinion' }
   ];
 
   const navHtml = `
@@ -47,7 +47,7 @@ async function initBlogPage() {
   const defaultConfig = {
     eyebrow: 'Blog',
     title: 'Writing and notes',
-    description: 'Essays, project reflections, and short-form research writing.'
+    description: 'Essays, curriculum reflections, and short-form mathematics writing.'
   };
 
   const config = headerConfig[filterTag] || defaultConfig;
@@ -60,7 +60,7 @@ async function initBlogPage() {
   if (titleEl) titleEl.textContent = config.title;
   if (descEl) descEl.textContent = config.description;
   
-  document.title = `${config.title} | Melissa Christensen`;
+  document.title = `${config.title} | Sandip Munde`;
 
   const pageIntro = document.querySelector('.page-intro');
   if (pageIntro && !document.querySelector('.category-nav')) {

@@ -2,7 +2,7 @@
 title: 'A-Level Math vs AP Math vs IB Math: What Is the Difference?'
 slug: alevel-ap-ib
 summary: My take on the differences between the three major curricula.
-author: Melissa Christensen
+author: Sandip Munde
 publishedAt: 2026-03-23T00:00:00.000Z
 tags:
   - cat-communication

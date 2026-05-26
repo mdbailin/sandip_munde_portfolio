@@ -1,10 +1,10 @@
-# Melissa Christensen Portfolio
+# Sandip Munde Portfolio
 
 Static academic portfolio designed for GitHub Pages with TinaCMS-backed blog authoring.
 
 ## Included pages
 
-- `index.html`: home page with Melissa's profile photo and resume download.
+- `index.html`: home page with Sandip's profile photo, resume content, and resume download.
 - `videos.html`: latest uploads from a configured YouTube channel.
 - `blog.html`: public blog index.
 - `post.html`: individual post reader.
@@ -22,7 +22,7 @@ If the repo name changes, update `scripts/config.js`:
 ```js
 github: {
   owner: "mdbailin",
-  repo: "mc_portfolio",
+  repo: "sandip_munde_portfolio",
   branch: "main",
   contentDir: "content/posts",
 }
@@ -30,7 +30,7 @@ github: {
 
 ## YouTube feed setup
 
-Add Melissa's YouTube channel details in `scripts/config.js`:
+Add Sandip's YouTube channel details in `scripts/config.js`:
 
 ```js
 youtube: {
@@ -56,7 +56,7 @@ The public blog pages read `content/posts.json`, a generated file built from Mar
 
 Recommended TinaCloud setup:
 
-1. Create a TinaCloud project connected to `mdbailin/mc_portfolio`.
+1. Create a TinaCloud project connected to `mdbailin/sandip_munde_portfolio`.
 2. Copy the TinaCloud `clientId` and read/write token.
 3. Add GitHub repository secrets:
    - `TINA_PUBLIC_CLIENT_ID`
@@ -69,7 +69,7 @@ Each blog post is a Markdown file with front matter in `content/posts/`, for exa
 ---
 title: Example Title
 summary: A short summary for blog listing pages.
-author: Melissa Christensen
+author: Sandip Munde
 publishedAt: 2026-03-23T00:00:00.000Z
 tags:
   - research

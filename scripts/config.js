@@ -1,19 +1,19 @@
 const SITE_CONFIG = {
   site: {
-    title: "Melissa Christensen | Writing and Teaching",
+    title: "Sandip Munde | IB Mathematics Educator",
     headerTitle: "",
     subtitle: "",
-    description: "Writing, teaching resources, articles, and reflections by Melissa Christensen.",
+    description: "IB and CIE mathematics educator, programme coordinator, and school leader Sandip Munde.",
   },
   profile: {
-    name: "Melissa Christensen",
-    role: "Writing, Teaching, and Reflections",
+    name: "Sandip Munde",
+    role: "IB Mathematics Educator and Programme Leader",
     summary:
-      "Welcome to a space for writing, teaching resources, and reflections for students, colleagues, and lifelong learners.",
+      "IB and CIE educator with experience in mathematics, TOK, curriculum leadership, authorizations, and international school development.",
   },
   github: {
     owner: "mdbailin",
-    repo: "mc_portfolio",
+    repo: "sandip_munde_portfolio",
     branch: "main",
     contentDir: "content/posts",
   },

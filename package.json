@@ -1,8 +1,8 @@
 {
-  "name": "mc_portfolio",
+  "name": "sandip_munde_portfolio",
   "private": true,
   "version": "1.0.0",
-  "description": "Melissa Christensen portfolio site with TinaCMS-backed blog authoring.",
+  "description": "Sandip Munde portfolio site with TinaCMS-backed blog authoring.",
   "scripts": {
     "build:posts": "node scripts/generate-posts-json.mjs",
     "tinacms": "tinacms",
