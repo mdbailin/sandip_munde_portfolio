@@ -12,26 +12,14 @@ async function initBlogPage() {
   // Customize header based on tag
   const headerConfig = {
     'education': {
-      eyebrow: 'Classroom Insights',
-      title: 'Math in Classroom',
-      description: 'Strategies and reflections on mathematics learning in IB, CIE, and international classrooms.'
-    },
-    'research': {
-      eyebrow: 'Exploring Mathematics',
-      title: 'Math for All Seasons',
-      description: 'Mathematical ideas, models, history, and classroom connections for curious learners.'
-    },
-    'communication': {
-      eyebrow: 'Opinion & Commentary',
-      title: 'Opinion',
-      description: 'Reflections on curriculum, student growth, international education, and leadership.'
+      eyebrow: 'Middle Years Programme',
+      title: 'IB MYP',
+      description: 'Coordination, curriculum alignment, ATL skills, interdisciplinary learning, and assessment readiness in the IB Middle Years Programme.'
     }
   };
 
   const categories = [
-    { tag: 'education', label: 'Math in Classroom' },
-    { tag: 'research', label: 'Math for All Seasons' },
-    { tag: 'communication', label: 'Opinion' }
+    { tag: 'education', label: 'IB MYP' }
   ];
 
   const navHtml = `
@@ -46,8 +34,8 @@ async function initBlogPage() {
 
   const defaultConfig = {
     eyebrow: 'Blog',
-    title: 'Writing and notes',
-    description: 'Essays, curriculum reflections, and short-form mathematics writing.'
+    title: 'IB MYP Writing',
+    description: 'Essays and practical reflections on IB MYP leadership, curriculum, and student learning.'
   };
 
   const config = headerConfig[filterTag] || defaultConfig;

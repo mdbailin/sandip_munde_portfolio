@@ -1,0 +1,49 @@
+---
+title: IB MYP Leadership: Building a Coherent Middle Years Programme
+slug: ib-myp-leadership
+summary: A practical look at IB MYP coordination, curriculum alignment, ATL skills, interdisciplinary learning, and assessment readiness.
+author: Sandip Munde
+publishedAt: 2026-05-26T00:00:00.000Z
+tags:
+  - cat-education
+  - IB MYP
+  - Middle Years Programme
+  - Curriculum Leadership
+  - ATL Skills
+---
+
+# IB MYP Leadership: Building a Coherent Middle Years Programme
+
+The IB Middle Years Programme works best when it is treated as a connected learning ecosystem, not a collection of separate subject plans. Strong MYP leadership brings together curriculum design, assessment practice, interdisciplinary learning, Approaches to Learning skills, service as action, and clear communication with students, families, and teachers.
+
+For an MYP coordinator, the central responsibility is coherence. Teachers need shared expectations for unit planning, inquiry, conceptual understanding, assessment criteria, and reflection. Students need to understand what quality learning looks like across subjects. Parents need clear information about progression, e-assessment, portfolios, and the habits that help students grow.
+
+## Curriculum and Inquiry
+
+Effective MYP curriculum planning begins with inquiry. A strong unit is not simply a list of content topics. It should help students ask meaningful questions, build disciplinary understanding, and connect learning to broader contexts.
+
+This requires regular collaborative planning. Teachers need time to review statements of inquiry, global contexts, key and related concepts, factual, conceptual, and debatable questions, and assessment tasks. Coordination is important because the student experience should feel intentionally designed across the year, not fragmented from one classroom to another.
+
+## Assessment Readiness
+
+MYP assessment depends on clarity. Students should understand the criteria before they are assessed, and teachers should calibrate expectations through moderation. This is especially important in schools preparing for e-assessments, e-portfolios, Personal Project, or Community Project.
+
+A useful system includes clear calendars, assessment maps, moderation routines, evidence collection, and timely feedback cycles. These structures help teachers make consistent judgments and help students take ownership of improvement.
+
+## ATL Skills Across the School
+
+Approaches to Learning skills should be planned deliberately. Research, communication, thinking, self-management, and social skills are not extras. They are part of the programme's academic foundation.
+
+When ATL skills are mapped across units, students encounter them repeatedly in meaningful contexts. Over time, this helps them become more independent, reflective, and prepared for the Diploma Programme.
+
+## Interdisciplinary Learning
+
+Interdisciplinary learning is one of the strengths of the MYP, but it needs careful design. A successful interdisciplinary unit should not force an artificial connection between subjects. It should create a learning experience where students genuinely need tools, concepts, and perspectives from more than one discipline.
+
+Good coordination helps teachers choose the right moments for interdisciplinary work and keeps the process manageable. The goal is depth, not decoration.
+
+## Programme Culture
+
+The strongest MYP schools build a culture of collaboration. Coordinators support this by creating systems for communication, professional learning, unit review, assessment moderation, and student support.
+
+When the programme is coherent, students experience mathematics, science, humanities, languages, arts, design, physical education, and service as parts of a larger learning journey. That is the promise of the MYP: rigorous academic learning shaped by inquiry, reflection, international-mindedness, and purposeful action.
