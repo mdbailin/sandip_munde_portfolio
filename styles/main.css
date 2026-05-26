@@ -549,16 +549,16 @@ header.header {
 }
 
 /* ============================================
-   ARTICLES SECTION (THREE COLUMNS)
+   IB MYP SECTION
    ============================================ */
 
-#articles {
+#ib-myp {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-#articles .section-title {
+#ib-myp .section-title {
   text-align: center;
   font-size: 3rem;
   font-weight: 500;
@@ -566,7 +566,7 @@ header.header {
   margin-bottom: 3rem;
 }
 
-#articles .section-title::after {
+#ib-myp .section-title::after {
   content: '';
   display: block;
   width: 60px;
@@ -583,6 +583,11 @@ header.header {
   max-width: var(--max-width);
   margin: 0 auto;
   width: 100%;
+}
+
+.articles-grid-single {
+  grid-template-columns: minmax(0, 680px);
+  justify-content: center;
 }
 
 .article-card {
@@ -665,7 +670,7 @@ header.header {
     padding: 1.5rem;
   }
   
-  #articles .section-title {
+  #ib-myp .section-title {
     font-size: 2.2rem;
   }
 }

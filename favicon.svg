@@ -8,8 +8,12 @@
   </defs>
   <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#favicon-bg)" />
   <rect x="7" y="7" width="50" height="50" rx="11" fill="none" stroke="#d9b46b" stroke-width="2" />
-  <path
-    d="M16 46V18h7.7L32 36.8 40.3 18H48v28h-5.6V27.2L34.2 46h-4.4l-8.2-18.8V46Z"
-    fill="#f6eddc"
-  />
+  <text
+    x="32"
+    y="45"
+    text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="36"
+    font-weight="700"
+    fill="#f6eddc">S</text>
 </svg>

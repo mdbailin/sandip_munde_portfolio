@@ -106,7 +106,7 @@ export function initSite(activePage) {
         <li><a href="#experience" data-scroll="experience">Focus</a></li>
         <li><a href="#career" data-scroll="career">Career</a></li>
         <li><a href="#education" data-scroll="education">Education</a></li>
-        <li><a href="#articles" data-scroll="articles">Articles</a></li>
+        <li><a href="#ib-myp" data-scroll="ib-myp">IB MYP</a></li>
         <li><a href="#contact" data-scroll="contact">Contact</a></li>
       `;
     } else {
@@ -116,7 +116,7 @@ export function initSite(activePage) {
         <li><a href="index.html#experience">Focus</a></li>
         <li><a href="index.html#career">Career</a></li>
         <li><a href="index.html#education">Education</a></li>
-        <li><a href="index.html#articles">Articles</a></li>
+        <li><a href="index.html#ib-myp">IB MYP</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       `;
     }
